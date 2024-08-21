@@ -105,14 +105,25 @@ uint16_t AP_IOMCU_FW::mix_output_range(uint8_t channel, int16_t value) const
 
 
 /*
-  elevon and vtail mixer
+  elevon mixer
  */
-int16_t AP_IOMCU_FW::mix_elevon_vtail(int16_t angle1, int16_t angle2, bool first_output) const
+int16_t AP_IOMCU_FW::mix_elevon(int16_t angle1, int16_t angle2, bool first_output) const
 {
     if (first_output) {
-        return (angle2 - angle1) * mixing.mixing_gain / 1000;
+        return (angle2 - angle1) * mixing.mixing_e_gain / 1000;
     }
-    return (angle1 + angle2) * mixing.mixing_gain / 1000;
+    return (angle1 + angle2) * mixing.mixing_e_gain / 1000;
+}
+
+/*
+  vtail mixer
+ */
+int16_t AP_IOMCU_FW::mix_vtail(int16_t angle1, int16_t angle2, bool first_output) const
+{
+    if (first_output) {
+        return (angle2 - angle1) * mixing.mixing_v_gain / 1000;
+    }
+    return (angle1 + angle2) * mixing.mixing_v_gain / 1000;
 }
 
 /*
@@ -196,22 +207,22 @@ void AP_IOMCU_FW::run_mixer(void)
         case SRV_Channel::k_dspoilerLeft1:
         case SRV_Channel::k_dspoilerLeft2:
             // treat differential spoilers as elevons
-            pwm = mix_output_angle(i, mix_elevon_vtail(roll, pitch, true));
+            pwm = mix_output_angle(i, mix_elevon(roll, pitch, true));
             break;
 
         case SRV_Channel::k_elevon_right:
         case SRV_Channel::k_dspoilerRight1:
         case SRV_Channel::k_dspoilerRight2:
             // treat differential spoilers as elevons
-            pwm = mix_output_angle(i, mix_elevon_vtail(roll, pitch, false));
+            pwm = mix_output_angle(i, mix_elevon(roll, pitch, false));
             break;
 
         case SRV_Channel::k_vtail_left:
-            pwm = mix_output_angle(i, mix_elevon_vtail(rudder, pitch, false));
+            pwm = mix_output_angle(i, mix_vtail(rudder, pitch, false));
             break;
 
         case SRV_Channel::k_vtail_right:
-            pwm = mix_output_angle(i, mix_elevon_vtail(rudder, pitch, true));
+            pwm = mix_output_angle(i, mix_vtail(rudder, pitch, true));
             break;
 
         default:
