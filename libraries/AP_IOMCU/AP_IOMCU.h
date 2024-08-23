@@ -146,7 +146,7 @@ public:
 
     // setup for FMU failsafe mixing
     bool setup_mixing(RCMapper *rcmap, int8_t override_chan,
-                      float mixing_gain, uint16_t manual_rc_mask);
+                      float mixing_e_gain, float mixing_v_gain, uint16_t manual_rc_mask);
 
     // Check if pin number is valid and configured for GPIO
     bool valid_GPIO_pin(uint8_t pin) const;

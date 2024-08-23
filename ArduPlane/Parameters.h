@@ -87,7 +87,6 @@ public:
         k_param_elevon_output, // unused
         k_param_att_controller, // unused
         k_param_mixing_e_gain,
-        k_param_mixing_v_gain,
         k_param_scheduler,
         k_param_relay,
         k_param_takeoff_throttle_delay,
@@ -345,7 +344,7 @@ public:
         k_param_mixing_offset,
         k_param_dspoiler_rud_rate,
         k_param_airspeed_stall,
-
+        k_param_mixing_v_gain,
         k_param_logger = 253, // Logging Group
 
         // 254,255: reserved

@@ -1186,7 +1186,7 @@ void AP_IOMCU::bind_dsm(uint8_t mode)
   mode if the FMU dies
  */
 bool AP_IOMCU::setup_mixing(RCMapper *rcmap, int8_t override_chan,
-                            float mixing_gain, uint16_t manual_rc_mask)
+                            float mixing_e_gain, float mixing_v_gain, uint16_t manual_rc_mask)
 {
     if (!is_chibios_backend) {
         return false;

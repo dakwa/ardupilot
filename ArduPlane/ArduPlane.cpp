@@ -318,7 +318,7 @@ void Plane::one_second_loop()
     set_control_channels();
 
 #if HAL_WITH_IO_MCU
-    iomcu.setup_mixing(&rcmap, g.override_channel.get(), g.mixing_e_gain, g2.manual_rc_mask);
+    iomcu.setup_mixing(&rcmap, g.override_channel.get(), g.mixing_e_gain, g.mixing_v_gain, g2.manual_rc_mask);
 #endif
 
 #if HAL_ADSB_ENABLED
