@@ -613,12 +613,19 @@ const AP_Param::Info Plane::var_info[] = {
     // @User: Advanced
     GSCALAR(ground_steer_dps,         "GROUND_STEER_DPS",  90),
 
-    // @Param: MIXING_GAIN
-    // @DisplayName: Mixing Gain
-    // @Description: The gain for the Vtail and elevon output mixers. The default is 0.5, which ensures that the mixer doesn't saturate, allowing both input channels to go to extremes while retaining control over the output. Hardware mixers often have a 1.0 gain, which gives more servo throw, but can saturate. If you don't have enough throw on your servos with VTAIL_OUTPUT or ELEVON_OUTPUT enabled then you can raise the gain using MIXING_GAIN. The mixer allows outputs in the range 900 to 2100 microseconds.
+    // @Param: MIXING_E_GAIN
+    // @DisplayName: Mixing E Gain
+    // @Description: The gain for the elevon output mixers. The default is 0.5, which ensures that the mixer doesn't saturate, allowing both input channels to go to extremes while retaining control over the output. Hardware mixers often have a 1.0 gain, which gives more servo throw, but can saturate. If you don't have enough throw on your servos with ELEVON_OUTPUT enabled then you can raise the gain using MIXING_E_GAIN. The mixer allows outputs in the range 900 to 2100 microseconds.
     // @Range: 0.5 1.2
     // @User: Standard
-    GSCALAR(mixing_gain,            "MIXING_GAIN",    0.5f),
+    GSCALAR(mixing_e_gain,            "MIXING_E_GAIN",    0.5f),
+
+    // @Param: MIXING_V_GAIN
+    // @DisplayName: Mixing V Gain
+    // @Description: The gain for the Vtail output mixers. The default is 0.5, which ensures that the mixer doesn't saturate, allowing both input channels to go to extremes while retaining control over the output. Hardware mixers often have a 1.0 gain, which gives more servo throw, but can saturate. If you don't have enough throw on your servos with VTAIL_OUTPUT enabled then you can raise the gain using MIXING_V_GAIN. The mixer allows outputs in the range 900 to 2100 microseconds.
+    // @Range: 0.5 1.2
+    // @User: Standard
+    GSCALAR(mixing_v_gain,            "MIXING_V_GAIN",    0.5f),
 
     // @Param: RUDDER_ONLY
     // @DisplayName: Rudder only aircraft
@@ -629,7 +636,7 @@ const AP_Param::Info Plane::var_info[] = {
 
     // @Param: MIXING_OFFSET
     // @DisplayName: Mixing Offset
-    // @Description: The offset for the Vtail and elevon output mixers, as a percentage. This can be used in combination with MIXING_GAIN to configure how the control surfaces respond to input. The response to aileron or elevator input can be increased by setting this parameter to a positive or negative value. A common usage is to enter a positive value to increase the aileron response of the elevons of a flying wing. The default value of zero will leave the aileron-input response equal to the elevator-input response.
+    // @Description: The offset for the Vtail and elevon output mixers, as a percentage. This can be used in combination with MIXING_E_GAIN to configure how the control surfaces respond to input. The response to aileron or elevator input can be increased by setting this parameter to a positive or negative value. A common usage is to enter a positive value to increase the aileron response of the elevons of a flying wing. The default value of zero will leave the aileron-input response equal to the elevator-input response.
     // @Units: d%
     // @Range: -1000 1000
     // @User: Standard

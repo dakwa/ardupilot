@@ -1230,7 +1230,8 @@ bool AP_IOMCU::setup_mixing(RCMapper *rcmap, int8_t override_chan,
     }
 
     MIX_UPDATE(mixing.rc_chan_override, override_chan);
-    MIX_UPDATE(mixing.mixing_gain, (uint16_t)(mixing_gain*1000));
+    MIX_UPDATE(mixing.mixing_e_gain, (uint16_t)(mixing_e_gain*1000));
+    MIX_UPDATE(mixing.mixing_v_gain, (uint16_t)(mixing_v_gain*1000));
     MIX_UPDATE(mixing.manual_rc_mask, manual_rc_mask);
 
     // and enable

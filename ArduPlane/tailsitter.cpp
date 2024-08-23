@@ -179,7 +179,8 @@ static const struct AP_Param::defaults_table_struct defaults_table_tailsitter[] 
     { "Q_A_ANGLE_BOOST",   0 },
     { "PTCH_LIM_MAX_DEG",  30 },
     { "PTCH_LIM_MIN_DEG", -30 },
-    { "MIXING_GAIN",      1.0 },
+    { "MIXING_E_GAIN",      1.0 },
+    { "MIXING_V_GAIN",      1.0 },
     { "RUDD_DT_GAIN",      10 },
     { "Q_TRANSITION_MS",   2000 },
     { "Q_TRANS_DECEL",    6 },
@@ -468,9 +469,9 @@ void Tailsitter::output(void)
     bool yaw_lim = _have_aileron && (fabsf(SRV_Channels::get_output_scaled(SRV_Channel::Aux_servo_function_t::k_aileron)) >= SERVO_MAX);
 
     // Mix elevons and V-tail, always giving full priority to pitch
-    float elevator_mix = SRV_Channels::get_output_scaled(SRV_Channel::k_elevator) * (100.0 - plane.g.mixing_offset) * 0.01 * plane.g.mixing_gain;
-    float aileron_mix = SRV_Channels::get_output_scaled(SRV_Channel::k_aileron) * (100.0 + plane.g.mixing_offset) * 0.01 * plane.g.mixing_gain;
-    float rudder_mix = SRV_Channels::get_output_scaled(SRV_Channel::k_rudder) * (100.0 + plane.g.mixing_offset) * 0.01 * plane.g.mixing_gain;
+    float elevator_mix = SRV_Channels::get_output_scaled(SRV_Channel::k_elevator) * (100.0 - plane.g.mixing_offset) * 0.01 * plane.g.mixing_e_gain;
+    float aileron_mix = SRV_Channels::get_output_scaled(SRV_Channel::k_aileron) * (100.0 + plane.g.mixing_offset) * 0.01 * plane.g.mixing_e_gain;
+    float rudder_mix = SRV_Channels::get_output_scaled(SRV_Channel::k_rudder) * (100.0 + plane.g.mixing_offset) * 0.01 * plane.g.mixing_v_gain;
 
     const float headroom = SERVO_MAX - fabsf(elevator_mix);
     if (is_positive(headroom)) {

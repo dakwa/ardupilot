@@ -572,7 +572,7 @@ void Tiltrotor::vectoring(void)
                 // fixed wing tilt
                 const float gain = fixed_gain * fixed_tilt_limit;
                 // base the tilt on elevon mixing, which means it
-                // takes account of the MIXING_GAIN. The rear tilt is
+                // takes account of the MIXING_E_GAIN. The rear tilt is
                 // based on elevator
                 const float right = gain * SRV_Channels::get_output_scaled(SRV_Channel::k_elevon_right) * (1/4500.0);
                 const float left  = gain * SRV_Channels::get_output_scaled(SRV_Channel::k_elevon_left) * (1/4500.0);

@@ -86,7 +86,8 @@ public:
         k_param_nav_controller, // unused
         k_param_elevon_output, // unused
         k_param_att_controller, // unused
-        k_param_mixing_gain,
+        k_param_mixing_e_gain,
+        k_param_mixing_v_gain,
         k_param_scheduler,
         k_param_relay,
         k_param_takeoff_throttle_delay,
@@ -434,7 +435,8 @@ public:
     // Misc
     //
     AP_Int8 rudder_only;
-    AP_Float mixing_gain;
+    AP_Float mixing_e_gain;
+    AP_Float mixing_v_gain;
     AP_Int16 mixing_offset;
     AP_Int16 dspoiler_rud_rate;
     AP_Int32 log_bitmask;
