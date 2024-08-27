@@ -60,11 +60,46 @@ end
 function update_LEDs()
     if arming:is_armed() then
         if (vehicle:get_mode() == 13) then
-            if (timer < 5) then
-                setRGB(chan, 0, 100, 0, 0)
-                setRGB(chan, 1, 100, 0, 0)
-                setRGB(chan, 2, 100, 0, 0)
-                setRGB(chan, 3, 100, 0, 0)
+            if (timer == 0) then
+                setRGB(chan, 0, 0, 0, 0)
+                setRGB(chan, 1, 0, 0, 0)
+                setRGB(chan, 2, 0, 0, 0)
+                setRGB(chan, 3, 0, 0, 0)
+            elseif (timer == 1) then
+                setRGB(chan, 0, br_flash, br_flash, br_flash)
+                setRGB(chan, 1, br_flash, br_flash, br_flash)
+                setRGB(chan, 2, br_flash, br_flash, br_flash)
+                setRGB(chan, 3, br_flash, br_flash, br_flash)
+            elseif (timer == 2) then
+                setRGB(chan, 0, 0, 0, 0)
+                setRGB(chan, 1, 0, 0, 0)
+                setRGB(chan, 2, 0, 0, 0)
+                setRGB(chan, 3, 0, 0, 0)
+            elseif (timer == 3) then
+                setRGB(chan, 0, br_flash, br_flash, br_flash)
+                setRGB(chan, 1, br_flash, br_flash, br_flash)
+                setRGB(chan, 2, br_flash, br_flash, br_flash)
+                setRGB(chan, 3, br_flash, br_flash, br_flash)
+            elseif (timer == 4) then
+                setRGB(chan, 0, 0, 0, 0)
+                setRGB(chan, 1, 0, 0, 0)
+                setRGB(chan, 2, 0, 0, 0)
+                setRGB(chan, 3, 0, 0, 0)
+            elseif (timer == 5) then
+                setRGB(chan, 0, br_flash, br_flash, br_flash)
+                setRGB(chan, 1, br_flash, br_flash, br_flash)
+                setRGB(chan, 2, br_flash, br_flash, br_flash)
+                setRGB(chan, 3, br_flash, br_flash, br_flash)
+            elseif (timer == 6) then
+                setRGB(chan, 0, 0, 0, 0)
+                setRGB(chan, 1, 0, 0, 0)
+                setRGB(chan, 2, 0, 0, 0)
+                setRGB(chan, 3, 0, 0, 0)
+            elseif (timer == 7) then
+                setRGB(chan, 0, br_flash, br_flash, br_flash)
+                setRGB(chan, 1, br_flash, br_flash, br_flash)
+                setRGB(chan, 2, br_flash, br_flash, br_flash)
+                setRGB(chan, 3, br_flash, br_flash, br_flash)
             else
                 setRGB(chan, 0, br_flash, 0, 0)
                 setRGB(chan, 1, br_flash, 0, 0)
@@ -72,7 +107,7 @@ function update_LEDs()
                 setRGB(chan, 3, br_flash, 0, 0)
             end
             timer = timer + 1
-            if (timer > 10) then
+            if (timer > 18) then
                 timer = 0
             end
         else
@@ -87,21 +122,16 @@ function update_LEDs()
                 setRGB(chan, 2, br_flash, br_flash, br_flash)
                 setRGB(chan, 3, br_flash, br_flash, br_flash)
             elseif (timer == 2) then
-                setRGB(chan, 0, 0, br_flash, 0)
-                setRGB(chan, 1, 0, br_flash, 0)
-                setRGB(chan, 2, br_flash, 0, 0)
-                setRGB(chan, 3, br_flash, 0, 0)
-            elseif (timer == 3) then
                 setRGB(chan, 0, 0, 0, 0)
                 setRGB(chan, 1, 0, 0, 0)
                 setRGB(chan, 2, 0, 0, 0)
                 setRGB(chan, 3, 0, 0, 0)
-            elseif (timer == 4) then
+            elseif (timer == 3) then
                 setRGB(chan, 0, br_flash, br_flash, br_flash)
                 setRGB(chan, 1, br_flash, br_flash, br_flash)
                 setRGB(chan, 2, br_flash, br_flash, br_flash)
                 setRGB(chan, 3, br_flash, br_flash, br_flash)
-            elseif (timer == 5) then
+            else
                 setRGB(chan, 0, 0, br_flash, 0)
                 setRGB(chan, 1, 0, br_flash, 0)
                 setRGB(chan, 2, br_flash, 0, 0)
@@ -122,29 +152,6 @@ function update_LEDs()
         setRGB(chan, 2, 0, 0, br_color_2.color)
         br_color_3 = get_color(br_color_3)
         setRGB(chan, 3, 0, 0, br_color_3.color)
-        -- if(timer <= 1) then
-        --     br_color_0 = get_color(br_color_0)
-        --     setRGB(chan, 0, br_color_0.color, 0, 0)
-        --     br_color_1 = get_color(br_color_1)
-        --     setRGB(chan, 1, 0, 0, br_color_1.color)
-        --     br_color_2 = get_color(br_color_2)
-        --     setRGB(chan, 2, br_color_2.color, 0, 0)
-        --     br_color_3 = get_color(br_color_3)
-        --     setRGB(chan, 3, 0, 0, br_color_3.color)
-        -- else
-        --     br_color_0 = get_color(br_color_0)
-        --     setRGB(chan, 0, 0, 0, br_color_0.color)
-        --     br_color_1 = get_color(br_color_1)
-        --     setRGB(chan, 1, br_color_2.color, 0, 0)
-        --     br_color_2 = get_color(br_color_2)
-        --     setRGB(chan, 2, 0, 0, br_color_3.color)
-        --     br_color_3 = get_color(br_color_3)
-        --     setRGB(chan, 3, br_color_2.color, 0, 0)
-        -- end
-        -- timer = timer + 1
-        -- if (timer > 4) then
-        --     timer = 0
-        -- end
     else
         if (timer < 10) then
             setRGB(chan, -1, 100, 30, 0)
@@ -153,16 +160,16 @@ function update_LEDs()
         end
 
         if (ahrs:home_is_set()) then
-            setRGB(chan, 0, 0, 0, 102)
+            setRGB(chan, 0, 0, 0, 104)
         end
         if (battery:voltage(0) > 15) then
-            setRGB(chan, 1, 0, 0, 102)
+            setRGB(chan, 1, 0, 0, 104)
         end
         if (rc:get_pwm(12) > 1000) then
-            setRGB(chan, 2, 0, 0, 102)
+            setRGB(chan, 2, 0, 0, 104)
         end
         if (gcs:last_seen() > millis() - 2000) then
-            setRGB(chan, 3, 0, 0, 102)
+            setRGB(chan, 3, 0, 0, 104)
         end
         timer = timer + 1
         if (timer > 20) then
