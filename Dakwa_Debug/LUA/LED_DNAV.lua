@@ -53,8 +53,34 @@ function get_color(br_color)
     return br_color
 end
 
-function setRGB(chanl, led, g, r, b)
-    serialLED:set_RGB(chanl, led, r, g, b)
+function setRGB(chanl, led, r, g, b)
+    serialLED:set_RGB(chanl, led, g, r, b) --Neopixels I have are GRB for whatever reason?!
+end
+
+function preflight_check()
+    if (ahrs:home_is_set()
+            and battery:voltage(0) > 15
+            and rc:get_pwm(12) > 1000
+            and gcs:last_seen() > millis() - 2000) then
+        return true;
+    else
+        return false;
+    end
+end
+
+function preflight_set()
+    if (ahrs:home_is_set()) then
+        setRGB(chan, 0, 0, 0, 104)
+    end
+    if (battery:voltage(0) > 15) then
+        setRGB(chan, 1, 0, 0, 104)
+    end
+    if (rc:get_pwm(12) > 1000) then
+        setRGB(chan, 2, 0, 0, 104)
+    end
+    if (gcs:last_seen() > millis() - 2000) then
+        setRGB(chan, 3, 0, 0, 104)
+    end
 end
 
 function update_LEDs()
@@ -143,7 +169,7 @@ function update_LEDs()
                 timer = 0
             end
         end
-    elseif arming:pre_arm_checks() then
+    elseif arming:pre_arm_checks() and preflight_check() then
         br_color_0 = get_color(br_color_0)
         setRGB(chan, 0, 0, 0, br_color_0.color)
         br_color_1 = get_color(br_color_1)
@@ -158,19 +184,9 @@ function update_LEDs()
         else
             setRGB(chan, -1, 130, 10, 0)
         end
+        
+        preflight_set()
 
-        if (ahrs:home_is_set()) then
-            setRGB(chan, 0, 0, 0, 104)
-        end
-        if (battery:voltage(0) > 15) then
-            setRGB(chan, 1, 0, 0, 104)
-        end
-        if (rc:get_pwm(12) > 1000) then
-            setRGB(chan, 2, 0, 0, 104)
-        end
-        if (gcs:last_seen() > millis() - 2000) then
-            setRGB(chan, 3, 0, 0, 104)
-        end
         timer = timer + 1
         if (timer > 20) then
             timer = 0
