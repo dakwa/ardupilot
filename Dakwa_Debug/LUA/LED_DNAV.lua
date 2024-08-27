@@ -59,41 +59,59 @@ end
 
 function update_LEDs()
     if arming:is_armed() then
-        if (timer == 0) then
-            setRGB(chan, 0, 0, 0, 0)
-            setRGB(chan, 1, 0, 0, 0)
-            setRGB(chan, 2, 0, 0, 0)
-            setRGB(chan, 3, 0, 0, 0)
-        elseif (timer == 1) then
-            setRGB(chan, 0, br_flash, br_flash, br_flash)
-            setRGB(chan, 1, br_flash, br_flash, br_flash)
-            setRGB(chan, 2, br_flash, br_flash, br_flash)
-            setRGB(chan, 3, br_flash, br_flash, br_flash)
-        elseif (timer == 2) then
-            setRGB(chan, 0, 0, br_flash, 0)
-            setRGB(chan, 1, 0, br_flash, 0)
-            setRGB(chan, 2, br_flash, 0, 0)
-            setRGB(chan, 3, br_flash, 0, 0)
-        elseif (timer == 3) then
-            setRGB(chan, 0, 0, 0, 0)
-            setRGB(chan, 1, 0, 0, 0)
-            setRGB(chan, 2, 0, 0, 0)
-            setRGB(chan, 3, 0, 0, 0)
-        elseif (timer == 4) then
-            setRGB(chan, 0, br_flash, br_flash, br_flash)
-            setRGB(chan, 1, br_flash, br_flash, br_flash)
-            setRGB(chan, 2, br_flash, br_flash, br_flash)
-            setRGB(chan, 3, br_flash, br_flash, br_flash)
-        elseif (timer == 5) then
-            setRGB(chan, 0, 0, br_flash, 0)
-            setRGB(chan, 1, 0, br_flash, 0)
-            setRGB(chan, 2, br_flash, 0, 0)
-            setRGB(chan, 3, br_flash, 0, 0)
-        end
+        if (vehicle:get_mode() == 13) then
+            if (timer < 5) then
+                setRGB(chan, 0, 100, 0, 0)
+                setRGB(chan, 1, 100, 0, 0)
+                setRGB(chan, 2, 100, 0, 0)
+                setRGB(chan, 3, 100, 0, 0)
+            else
+                setRGB(chan, 0, br_flash, 0, 0)
+                setRGB(chan, 1, br_flash, 0, 0)
+                setRGB(chan, 2, br_flash, 0, 0)
+                setRGB(chan, 3, br_flash, 0, 0)
+            end
+            timer = timer + 1
+            if (timer > 10) then
+                timer = 0
+            end
+        else
+            if (timer == 0) then
+                setRGB(chan, 0, 0, 0, 0)
+                setRGB(chan, 1, 0, 0, 0)
+                setRGB(chan, 2, 0, 0, 0)
+                setRGB(chan, 3, 0, 0, 0)
+            elseif (timer == 1) then
+                setRGB(chan, 0, br_flash, br_flash, br_flash)
+                setRGB(chan, 1, br_flash, br_flash, br_flash)
+                setRGB(chan, 2, br_flash, br_flash, br_flash)
+                setRGB(chan, 3, br_flash, br_flash, br_flash)
+            elseif (timer == 2) then
+                setRGB(chan, 0, 0, br_flash, 0)
+                setRGB(chan, 1, 0, br_flash, 0)
+                setRGB(chan, 2, br_flash, 0, 0)
+                setRGB(chan, 3, br_flash, 0, 0)
+            elseif (timer == 3) then
+                setRGB(chan, 0, 0, 0, 0)
+                setRGB(chan, 1, 0, 0, 0)
+                setRGB(chan, 2, 0, 0, 0)
+                setRGB(chan, 3, 0, 0, 0)
+            elseif (timer == 4) then
+                setRGB(chan, 0, br_flash, br_flash, br_flash)
+                setRGB(chan, 1, br_flash, br_flash, br_flash)
+                setRGB(chan, 2, br_flash, br_flash, br_flash)
+                setRGB(chan, 3, br_flash, br_flash, br_flash)
+            elseif (timer == 5) then
+                setRGB(chan, 0, 0, br_flash, 0)
+                setRGB(chan, 1, 0, br_flash, 0)
+                setRGB(chan, 2, br_flash, 0, 0)
+                setRGB(chan, 3, br_flash, 0, 0)
+            end
 
-        timer = timer + 1
-        if (timer > 10) then
-            timer = 0
+            timer = timer + 1
+            if (timer > 10) then
+                timer = 0
+            end
         end
     elseif arming:pre_arm_checks() then
         br_color_0 = get_color(br_color_0)
